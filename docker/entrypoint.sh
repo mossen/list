@@ -13,5 +13,4 @@ then
 fi
 
 echo "serving..."
-# tail -f /dev/null
-npm start
+tail -f /dev/null
