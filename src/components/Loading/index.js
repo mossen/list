@@ -2,11 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ReactComponent as LoadingSvg } from "../../assets/loading.svg";
 
-const Loading = props => {
+const Loading = (props) => {
+  const {
+    className,
+    height,
+    width,
+    show
+  } = props;
+
   return (
-    props.show && (
-      <div className={props.className}>
-        <LoadingSvg height={props.height} width={props.width} />
+    show && (
+      <div className={className}>
+        <LoadingSvg height={height} width={width} />
       </div>
     )
   );
@@ -14,7 +21,7 @@ const Loading = props => {
 
 Loading.defaultProps = {
   className: "",
-  with: "2rem",
+  width: "2rem",
   height: "2rem",
   show: true
 };

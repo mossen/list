@@ -4,15 +4,16 @@ import Styled from "styled-components";
 import Loading from "../Loading";
 import Item from "../Item";
 
-const List = props => {
-  const handleScroll = event => {
+const List = (props) => {
+  const { items, isLoading, loadMoreHandler } = props;
+  const handleScroll = (event) => {
     if (!props.canLoadMore) {
       return;
     }
-    
+
     const { scrollTop, clientHeight, scrollHeight } = event.target;
     if (scrollHeight <= scrollTop + clientHeight) {
-      props.loadMoreHandler();
+      loadMoreHandler();
     }
   };
 
@@ -22,15 +23,16 @@ const List = props => {
         onScroll={handleScroll}
         className="m-2 mt-10 max-w-full bg-white rounded overflow-scroll shadow-lg"
       >
-        {props.items &&
-          props.items.map((user, key) => (
+        {
+          items && items.map((user) => (
             <Item
-              key={key}
+              key={user.id}
               avatar={user.avatar}
               fullName={`${user.first_name} ${user.last_name}`}
             />
-          ))}
-        <Loading show={props.isLoading} className="mb-4" />
+          ))
+        }
+        <Loading show={isLoading} className="mb-4" />
       </Card>
     </div>
   );
@@ -44,13 +46,15 @@ const Card = Styled.div`
 List.defaultProps = {
   items: null,
   canLoadMore: false,
-  loadMoreHandler: null
+  loadMoreHandler: null,
+  isLoading: false
 };
 
 List.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.arrayOf(PropTypes.object),
   canLoadMore: PropTypes.bool,
-  loadMoreHandler: PropTypes.func
+  loadMoreHandler: PropTypes.func,
+  isLoading: PropTypes.bool
 };
 
 export default List;

@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "react-app",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "rules": {
+    // disable requiring trailing commas because it might be nice to revert to
+    // being JSON at some point, and I don't want to make big changes now.
+    "comma-dangle": 0,
+    "quotes": [2, "double", { "avoidEscape": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  }
+}
