@@ -12,7 +12,7 @@ const Loading = (props) => {
 
   return (
     show && (
-      <div className={className}>
+      <div data-testid="loading" className={className}>
         <LoadingSvg height={height} width={width} />
       </div>
     )
